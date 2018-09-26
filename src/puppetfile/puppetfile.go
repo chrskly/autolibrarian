@@ -47,7 +47,7 @@ func Read(path string) ([]PuppetModule, error) {
 
     // Our regex
     re := regexp.MustCompile(
-        "(?m)^mod [\"'](?P<modulename>[a-zA-Z0-9\\/\\-\\_]*)[\"']" +
+        "(?m)^mod [\"'](?P<name>[a-zA-Z0-9\\/\\-\\_]*)[\"']" +
         "(," +
         "(\n)?(\\s+)?(\n)?" +
         "(:git => \"(?P<git>[a-zA-Z0-9:\\/\\.\\-@_]*)?\")?" +

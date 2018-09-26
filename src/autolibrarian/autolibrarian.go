@@ -22,6 +22,8 @@ func CLI(module string, ref string) {
 
     // What environments do we have?
     envs := enumerateEnvironments(c.PuppetEnvironmentPath)
+
+    // Step through environments one-by-one
     for _, env := range envs {
         fmt.Fprintf(os.Stdout, "Checking env %v\n", env)
         puppet_file := c.PuppetEnvironmentPath + "/" + env + "/Puppetfile"

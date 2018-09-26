@@ -36,10 +36,10 @@ func CLI(module string, ref string) {
         // Is this module in this Puppetfile
         for _, m := range modules {
             module_name := m.GetName()
-            fmt.Printf(">> %v\n", module_name)
-            m.ToString()
+            fmt.Printf(">> %v %v\n", module_name, module)
+            //m.ToString()
             if module_name == module {
-                fmt.Sprintf("Updating module %s\n", module_name)
+                fmt.Fprintf(os.Stdout, "Updating module %s\n", module_name)
                 librarian.Update(module_name)
             }
         }

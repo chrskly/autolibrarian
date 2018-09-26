@@ -1,0 +1,8 @@
+
+mod 'zleslie/pkgng',
+  :git => "https://github.com/xaque208/puppet-pkgng.git"
+
+mod 'puppetlabs-ntp',
+  :git => "https://github.com/puppetlabs/puppetlabs-ntp.git",
+  :ref => '4.1.2'
+

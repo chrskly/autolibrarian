@@ -9,7 +9,7 @@ import (
     "librarian"
 )
 
-func CLI(module string, ref string) {
+func CLI(targetModule string, targetRef string) {
 
     // Read in the configuration
     var c conf
@@ -21,23 +21,23 @@ func CLI(module string, ref string) {
     fmt.Fprintf(os.Stdout, "conf : %v\n", c)
 
     // What environments do we have?
-    envs := enumerateEnvironments(c.PuppetEnvironmentPath)
+    environments := enumerateEnvironments(c.PuppetEnvironmentPath)
 
     // Step through environments one-by-one
-    for _, env := range envs {
-        fmt.Fprintf(os.Stdout, "Checking env %v\n", env)
-        puppet_file := c.PuppetEnvironmentPath + "/" + env + "/Puppetfile"
-        modules, err := puppetfile.Read(puppet_file)
+    for _, environment := range environments {
+        fmt.Fprintf(os.Stdout, "Checking env %v\n", environment)
+        puppetFilePath := c.PuppetEnvironmentPath + "/" + environment + "/Puppetfile"
+        environmentModules, err := puppetfile.Read(puppetFilePath)
         if err != nil {
-            fmt.Fprintf(os.Stderr, "WARNING could not open Puppetfile in %v environment\n", env)
+            fmt.Fprintf(os.Stderr, "WARNING could not open Puppetfile in %v environment\n", environment)
         }
 
         // Is this module in this Puppetfile
-        for _, m := range modules {
-            module_name := m.GetName()
-            if module_name == module {
-                fmt.Fprintf(os.Stdout, "Updating module %s\n", module_name)
-                librarian.Update(module_name, c.PuppetEnvironmentPath + "/" + env)
+        for _, environmentModule := range environmentModules {
+            environmentModuleName := environmentModule.GetName()
+            if environmentModuleName == targetModule {
+                fmt.Fprintf(os.Stdout, "Updating module %s\n", targetModule)
+                librarian.Update(targetModule, c.PuppetEnvironmentPath + "/" + env)
             }
         }
 

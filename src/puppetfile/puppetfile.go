@@ -29,6 +29,10 @@ func (p *PuppetModule) SetRef(ref string) {
     p.Ref = ref
 }
 
+func (p *PuppetModule) GetRef() string {
+    return p.Ref
+}
+
 func (p *PuppetModule) SetGit(git string) {
     p.Git = git
 }

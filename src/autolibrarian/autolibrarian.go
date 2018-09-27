@@ -35,7 +35,8 @@ func CLI(targetModule string, targetRef string) {
         // Is this module in this Puppetfile
         for _, environmentModule := range environmentModules {
             environmentModuleName := environmentModule.GetName()
-            if environmentModuleName == targetModule {
+            environmentModuleRef := environmentModule.GetRef()
+            if environmentModuleName == targetModule && environmentModuleRef == targetRef {
                 fmt.Fprintf(os.Stdout, "Updating module %s\n", targetModule)
                 librarian.Update(targetModule, c.PuppetEnvironmentPath + "/" + env)
             }

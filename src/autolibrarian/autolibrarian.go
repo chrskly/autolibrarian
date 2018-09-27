@@ -38,7 +38,7 @@ func CLI(targetModule string, targetRef string) {
             environmentModuleRef := environmentModule.GetRef()
             if environmentModuleName == targetModule && environmentModuleRef == targetRef {
                 fmt.Fprintf(os.Stdout, "Updating module %s\n", targetModule)
-                librarian.Update(targetModule, c.PuppetEnvironmentPath + "/" + env)
+                librarian.Update(targetModule, c.PuppetEnvironmentPath + "/" + environment)
             }
         }
 

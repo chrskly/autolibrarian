@@ -29,7 +29,7 @@ func CLI(module string, ref string) {
         puppet_file := c.PuppetEnvironmentPath + "/" + env + "/Puppetfile"
         modules, err := puppetfile.Read(puppet_file)
         if err != nil {
-            fmt.Fprintf(os.Stderr, "WARNING could not open Puppetfile in %v environment", env)
+            fmt.Fprintf(os.Stderr, "WARNING could not open Puppetfile in %v environment\n", env)
         }
 
         // Is this module in this Puppetfile

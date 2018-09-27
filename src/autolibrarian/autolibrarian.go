@@ -37,7 +37,7 @@ func CLI(module string, ref string) {
             module_name := m.GetName()
             if module_name == module {
                 fmt.Fprintf(os.Stdout, "Updating module %s\n", module_name)
-                librarian.Update(module_name)
+                librarian.Update(module_name, c.PuppetEnvironmentPath + "/" + env)
             }
         }
 

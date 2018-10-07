@@ -18,14 +18,12 @@ func CLI(targetModule string, targetRef string) {
         fmt.Fprintf(os.Stderr, "No config file found\n")
         return
     }
-    fmt.Fprintf(os.Stdout, "conf : %v\n", c)
 
     // What environments do we have?
     environments := enumerateEnvironments(c.PuppetEnvironmentPath)
 
     // Step through environments one-by-one
     for _, environment := range environments {
-        fmt.Fprintf(os.Stdout, "Checking env %v\n", environment)
         puppetFilePath := c.PuppetEnvironmentPath + "/" + environment + "/Puppetfile"
         environmentModules, err := puppetfile.Read(puppetFilePath)
         if err != nil {
@@ -37,11 +35,10 @@ func CLI(targetModule string, targetRef string) {
             environmentModuleName := environmentModule.GetName()
             environmentModuleRef := environmentModule.GetRef()
             if environmentModuleName == targetModule && environmentModuleRef == targetRef {
-                fmt.Fprintf(os.Stdout, "Updating module %s\n", targetModule)
                 librarian.Update(targetModule, c.PuppetEnvironmentPath + "/" + environment)
+                fmt.Fprintf(os.Stdout, "module %s updated in environment %s\n", targetModule, environment)
             }
         }
 
     }
-    //fmt.Fprintf(os.Stdout, contents)
 }

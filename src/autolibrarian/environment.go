@@ -4,8 +4,6 @@ package autolibrarian
 import (
     "io/ioutil"
     "log"
-    "os"
-    "fmt"
 )
 
 func enumerateEnvironments(environment_path string) []string {
@@ -24,7 +22,6 @@ func enumerateEnvironments(environment_path string) []string {
         }
     }
 
-    fmt.Fprintf(os.Stdout, "dirs %v\n", dirs)
     return dirs
 
 }
